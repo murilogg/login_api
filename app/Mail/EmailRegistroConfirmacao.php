@@ -25,11 +25,14 @@ class EmailRegistroConfirmacao extends Mailable
      */
     public function build()
     {
+        $link = url('/api/auth/registro/ativar/' . 
+                    $this->user->id . '/' . 
+                    $this->user->token);
         return $this->view('email.registroconfirmacao')->with([
             'nome' => $this->user->name,
             'email' => $this->user->email,
             'link' => $link,
-            'datahora' => now()-setTimezone('America/Sao_Paulo')->format('d-m-Y H:i:s')
+            'datahora' => now()-setTimezone('America/Sao_Paulo')->format('d-m-Y H:i:s')//dd/me/ano hr/mm/se
         ]);
     }
 }
